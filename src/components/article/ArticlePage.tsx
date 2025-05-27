@@ -66,7 +66,7 @@ const ArticlePage = () => {
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-12">
             <p className="text-sm uppercase tracking-wide mb-1">OUR RECENT BLOGS</p>
-            <h2 className="text-3xl font-bold">Publish what you think,<br />don't put it on social media</h2>
+            <h2 className="text-3xl font-bold">Publish what you think,<br />do not put it on social media</h2>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">

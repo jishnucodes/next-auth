@@ -4,11 +4,7 @@ import { useState } from "react";
 import { Search, ChevronRight, Clock, Heart, MessageSquare } from "lucide-react";
 
 export default function BlogHomepage() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
 
   // Sample data for featured and recent posts
   const featuredPost = {
