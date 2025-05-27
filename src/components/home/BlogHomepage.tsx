@@ -1,6 +1,5 @@
 "use client"
 
-import { useState } from "react";
 import { Search, ChevronRight, Clock, Heart, MessageSquare } from "lucide-react";
 
 export default function BlogHomepage() {
