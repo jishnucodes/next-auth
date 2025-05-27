@@ -7,10 +7,6 @@ import {
   X,
   Bell,
   Bookmark,
-  ChevronRight,
-  Clock,
-  Heart,
-  MessageSquare,
   User,
 } from "lucide-react";
 import { signOut } from "next-auth/react";

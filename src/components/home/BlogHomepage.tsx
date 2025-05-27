@@ -1,7 +1,7 @@
 "use client"
 
 import { useState } from "react";
-import { Search, Menu, X, Bell, Bookmark, ChevronRight, Clock, Heart, MessageSquare, User } from "lucide-react";
+import { Search, ChevronRight, Clock, Heart, MessageSquare } from "lucide-react";
 
 export default function BlogHomepage() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
