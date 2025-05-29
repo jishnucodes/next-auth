@@ -31,13 +31,13 @@ const Header = () => {
             {/* Desktop Navigation */}
             <nav className="hidden md:flex items-center space-x-8">
               <a
-                href="#"
+                href="/home"
                 className="text-gray-900 font-medium hover:text-blue-600 transition-colors"
               >
                 Home
               </a>
               <a
-                href="#"
+                href="/article"
                 className="text-gray-500 hover:text-blue-600 transition-colors"
               >
                 Articles
@@ -111,13 +111,13 @@ const Header = () => {
             <div className="container mx-auto px-4 py-2">
               <nav className="flex flex-col space-y-3 py-3">
                 <a
-                  href="#"
+                  href="/home"
                   className="text-gray-900 font-medium py-2 hover:text-blue-600 transition-colors"
                 >
                   Home
                 </a>
                 <a
-                  href="#"
+                  href="/article"
                   className="text-gray-500 py-2 hover:text-blue-600 transition-colors"
                 >
                   Articles

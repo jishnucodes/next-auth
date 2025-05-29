@@ -1,8 +1,16 @@
 "use client"
 
+import { PostDTO } from "@/dto/post";
 import { Search, ChevronRight, Clock, Heart, MessageSquare } from "lucide-react";
 
-export default function BlogHomepage() {
+type BlogHomepageProps = {
+  posts : PostDTO[]
+}
+
+export default function BlogHomepage(props: BlogHomepageProps) {
+  const { posts } = props;
+
+  console.log("BlogHomepage posts:", posts);
 
 
   // Sample data for featured and recent posts
@@ -75,7 +83,7 @@ export default function BlogHomepage() {
             <div className="md:flex">
               <div className="md:w-1/2">
                 <img 
-                  src={featuredPost.image} 
+                  src={posts[0]?.image || undefined} 
                   alt="Featured post" 
                   className="h-64 w-full object-cover md:h-full"
                 />
@@ -83,7 +91,7 @@ export default function BlogHomepage() {
               <div className="p-6 md:p-8 md:w-1/2">
                 <div className="flex items-center mb-3">
                   <span className="bg-blue-100 text-blue-600 text-xs font-medium px-2.5 py-0.5 rounded">
-                    {featuredPost.category}
+                    {posts[0]?.category}
                   </span>
                   <span className="ml-3 text-gray-500 text-sm flex items-center">
                     <Clock size={14} className="mr-1" />

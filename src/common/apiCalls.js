@@ -21,3 +21,21 @@ export const registerUser = async (data) => {
         return null;
     }
 }
+
+export const getPosts = async () => {
+    try {
+        const response = await axios({
+            method: "GET",
+            url: `${baseUrl}/post`,
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        console.log("Response:", response);
+        return response.data;
+    } catch (error) {
+        console.error("API call failed", error);
+        return null;
+    }
+}
