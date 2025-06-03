@@ -87,6 +87,9 @@ Prisma.NullTypes = {
  * Enums
  */
 exports.Prisma.TransactionIsolationLevel = makeStrictEnum({
+  ReadUncommitted: 'ReadUncommitted',
+  ReadCommitted: 'ReadCommitted',
+  RepeatableRead: 'RepeatableRead',
   Serializable: 'Serializable'
 });
 
@@ -136,6 +139,11 @@ exports.Prisma.LikeScalarFieldEnum = {
 exports.Prisma.SortOrder = {
   asc: 'asc',
   desc: 'desc'
+};
+
+exports.Prisma.QueryMode = {
+  default: 'default',
+  insensitive: 'insensitive'
 };
 
 exports.Prisma.NullsOrder = {
@@ -188,7 +196,7 @@ const config = {
   "datasourceNames": [
     "db"
   ],
-  "activeProvider": "sqlite",
+  "activeProvider": "postgresql",
   "inlineDatasources": {
     "db": {
       "url": {
@@ -197,8 +205,8 @@ const config = {
       }
     }
   },
-  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"sqlite\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             Int       @id @default(autoincrement())\n  email          String    @unique\n  hashedPassword String\n  fullName       String?\n  posts          Post[]\n  comments       Comment[]\n  likes          Like[]\n  createdAt      DateTime  @default(now())\n  modifiedAt     DateTime  @updatedAt\n  createdBy      Int?\n  modifiedBy     Int?\n}\n\nmodel Post {\n  id         Int       @id @default(autoincrement())\n  title      String\n  content    String?\n  image      Bytes?\n  category   String?\n  author     User      @relation(fields: [authorId], references: [id])\n  authorId   Int\n  comments   Comment[]\n  likes      Like[]\n  createdAt  DateTime  @default(now())\n  modifiedAt DateTime  @updatedAt\n  createdBy  Int?\n  modifiedBy Int?\n}\n\nmodel Comment {\n  id         Int      @id @default(autoincrement())\n  content    String\n  post       Post     @relation(fields: [postId], references: [id])\n  postId     Int\n  author     User     @relation(fields: [authorId], references: [id])\n  authorId   Int\n  createdAt  DateTime @default(now())\n  modifiedAt DateTime @updatedAt\n  createdBy  Int?\n  modifiedBy Int?\n}\n\nmodel Like {\n  id         Int      @id @default(autoincrement())\n  post       Post     @relation(fields: [postId], references: [id])\n  postId     Int\n  user       User     @relation(fields: [userId], references: [id])\n  userId     Int\n  createdAt  DateTime @default(now())\n  modifiedAt DateTime @updatedAt\n\n  @@unique([postId, userId]) // Ensure a user can like a post only once\n}\n",
-  "inlineSchemaHash": "d593b56c85ae028141cb32b5ae6d1ed08bf4324655ba2742f81ac1e3eb89a8fb",
+  "inlineSchema": "// This is your Prisma schema file,\n// learn more about it in the docs: https://pris.ly/d/prisma-schema\n\ngenerator client {\n  provider = \"prisma-client-js\"\n  output   = \"../generated/prisma\"\n}\n\ndatasource db {\n  provider = \"postgresql\"\n  url      = env(\"DATABASE_URL\")\n}\n\nmodel User {\n  id             Int       @id @default(autoincrement())\n  email          String    @unique\n  hashedPassword String\n  fullName       String?\n  posts          Post[]\n  comments       Comment[]\n  likes          Like[]\n  createdAt      DateTime  @default(now())\n  modifiedAt     DateTime  @updatedAt\n  createdBy      Int?\n  modifiedBy     Int?\n}\n\nmodel Post {\n  id         Int       @id @default(autoincrement())\n  title      String\n  content    String?\n  image      Bytes?\n  category   String?\n  author     User      @relation(fields: [authorId], references: [id])\n  authorId   Int\n  comments   Comment[]\n  likes      Like[]\n  createdAt  DateTime  @default(now())\n  modifiedAt DateTime  @updatedAt\n  createdBy  Int?\n  modifiedBy Int?\n}\n\nmodel Comment {\n  id         Int      @id @default(autoincrement())\n  content    String\n  post       Post     @relation(fields: [postId], references: [id])\n  postId     Int\n  author     User     @relation(fields: [authorId], references: [id])\n  authorId   Int\n  createdAt  DateTime @default(now())\n  modifiedAt DateTime @updatedAt\n  createdBy  Int?\n  modifiedBy Int?\n}\n\nmodel Like {\n  id         Int      @id @default(autoincrement())\n  post       Post     @relation(fields: [postId], references: [id])\n  postId     Int\n  user       User     @relation(fields: [userId], references: [id])\n  userId     Int\n  createdAt  DateTime @default(now())\n  modifiedAt DateTime @updatedAt\n\n  @@unique([postId, userId]) // Ensure a user can like a post only once\n}\n",
+  "inlineSchemaHash": "4795cc3a48cde64d92ebe78d42e9f40d9a4c9e376867fcf871954b3aa4926b4c",
   "copyEngine": true
 }
 
